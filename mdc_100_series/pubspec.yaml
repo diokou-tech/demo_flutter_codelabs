@@ -21,6 +21,7 @@ flutter:
   # TODO: Insert Fonts (103)
   uses-material-design: true
   assets:
+    - assets/logo_Diokou.png
     - assets/diamond.png
     # TODO: Add slanted menu asset (104)
     - packages/shrine_images/0-0.jpg
