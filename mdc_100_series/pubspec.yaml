@@ -11,6 +11,7 @@ dependencies:
 
   cupertino_icons: ^1.0.5
   shrine_images: ^2.0.2
+  logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -19,6 +20,11 @@ dev_dependencies:
 
 flutter:
   # TODO: Insert Fonts (103)
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: fonts/Rubik-Medium.ttf
+        - asset: fonts/Rubik-Regular.ttf
   uses-material-design: true
   assets:
     - assets/logo_Diokou.png
