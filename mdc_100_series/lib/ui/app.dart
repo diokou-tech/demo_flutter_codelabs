@@ -12,6 +12,9 @@ class ShrineApp extends StatelessWidget {
     TextTheme _buildShrineTextTheme(TextTheme base) {
       return base
           .copyWith(
+            titleMedium: base.titleMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
             headlineLarge: base.headlineLarge!.copyWith(
               fontWeight: FontWeight.w500,
             ),
@@ -38,18 +41,19 @@ class ShrineApp extends StatelessWidget {
       final ThemeData base = ThemeData.light();
       return base.copyWith(
           colorScheme: base.colorScheme.copyWith(
-            primary: kShrinePurple,
-            secondary: kShrinePurple,
+            primary: kShrinePink100,
+            onPrimary: kShrineBrown900,
+            secondary: kShrineBrown900,
             error: kShrineErrorRed,
           ),
           inputDecorationTheme: InputDecorationTheme(
               border: CutCornersBorder(),
               focusedBorder: CutCornersBorder(
-                  borderSide: BorderSide(width: 2, color: kShrinePurple)),
-              floatingLabelStyle: TextStyle(color: kShrinePurple)),
+                  borderSide: BorderSide(width: 2, color: kShrineBrown900)),
+              floatingLabelStyle: TextStyle(color: kShrineBrown900)),
           textTheme: _buildShrineTextTheme(base.textTheme),
           textSelectionTheme:
-              const TextSelectionThemeData(selectionColor: kShrinePurple));
+              const TextSelectionThemeData(selectionColor: kShrinePink100));
     }
 
     final ThemeData _ksherinTheme = _buildSherineTheme();

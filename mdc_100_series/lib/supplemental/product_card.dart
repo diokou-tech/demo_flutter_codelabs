@@ -50,7 +50,7 @@ class ProductCard extends StatelessWidget {
         ),
         SizedBox(
           height: kTextBoxHeight * MediaQuery.of(context).textScaleFactor,
-          width: 121.0,
+          width: 124.0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,9 +63,28 @@ class ProductCard extends StatelessWidget {
                 maxLines: 1,
               ),
               const SizedBox(height: 4.0),
-              Text(
-                formatter.format(product.price),
-                style: theme.textTheme.bodySmall,
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      formatter.format(product.price),
+                      style: theme.textTheme.bodySmall,
+                    ),
+                    IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.favorite,
+                          size: 20,
+                        )),
+                    IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.add_shopping_cart,
+                          size: 20,
+                        ))
+                  ],
+                ),
               ),
             ],
           ),

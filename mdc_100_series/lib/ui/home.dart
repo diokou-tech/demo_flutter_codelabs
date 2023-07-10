@@ -13,11 +13,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isSearch = false;
+  bool isShowGalery = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
       appBar: AppBar(
         title: Text("Shop"),
         iconTheme: IconThemeData(
@@ -47,7 +47,16 @@ class _HomePageState extends State<HomePage> {
                   },
                   icon: Icon(Icons.search)),
           IconButton(onPressed: null, icon: Icon(Icons.shopping_bag_rounded)),
-          IconButton(onPressed: null, icon: Icon(Icons.filter_alt_outlined)),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isShowGalery = !isShowGalery;
+              });
+            },
+            icon: Icon(isShowGalery == true
+                ? Icons.align_vertical_center_outlined
+                : Icons.align_horizontal_center),
+          ),
           IconButton(
               onPressed: () {
                 Navigator.pushReplacementNamed(context, "/login");
@@ -55,15 +64,16 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.logout_rounded))
         ],
       ),
-      // body: GridView.count(
-      //   crossAxisCount: 2,
-      //   padding: EdgeInsets.all(16.8),
-      //   childAspectRatio: 8.0 / 9.0,
-      //   children: _buildGridCards(context),
-      // ),
-      body: AsymmetricView(
-        products: ProductsRepository.loadProducts(Category.all),
-      ),
+      body: isShowGalery == true
+          ? GridView.count(
+              crossAxisCount: 2,
+              padding: EdgeInsets.all(16.8),
+              childAspectRatio: 8.0 / 9.0,
+              children: _buildGridCards(context),
+            )
+          : AsymmetricView(
+              products: ProductsRepository.loadProducts(Category.all),
+            ),
       resizeToAvoidBottomInset: false,
     );
   }
@@ -98,20 +108,39 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       product.name,
-                      style: theme.textTheme.titleLarge,
+                      style: theme.textTheme.labelLarge,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
-                    const SizedBox(height: 8.0),
-                    Text(
-                      formatter.format(product.price),
-                      style: theme.textTheme.headlineSmall,
+                    const SizedBox(height: 6.0),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            formatter.format(product.price),
+                            style: theme.textTheme.headlineSmall,
+                          ),
+                          IconButton(
+                              onPressed: null,
+                              icon: Icon(
+                                Icons.favorite,
+                                size: 20,
+                              )),
+                          IconButton(
+                              onPressed: null,
+                              icon: Icon(
+                                Icons.add_shopping_cart,
+                                size: 20,
+                              ))
+                        ],
+                      ),
                     ),
                   ],
                 ),
